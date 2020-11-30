@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+  text-align: left;    
+}
+
+
+</style>
+</head>
+<body >
+
+<table style="width:100%">
+  <tr>
+    
+    <th colspan="3"> 
+    
+      <textarea id="a"
+     style="margin:0px 500px 0px ;"
+     name="message" rows="20" cols="70"
+     placeholder="copy and paste a text here..">
+     </textarea>
+  
+  
+    </th>
+  </tr>
+  
+  <tr>
+    <td>
+    <p><b>Styling a paragraph</b></p>
+    <label >Text color:</label>
+    <input type="color" value="#ff0000" id="b">
+    <br>
+    <label>Background color:</label>
+    <input type="color" value="#ff0000"  id="c">
+    <form >
+ 
+  <input  type="radio" id="witho" name="border1" onclick="if(this.checked){myFunction1()}" >
+  <label >Without border</label><br>
+  <input type="radio" id="with" name="border1" onclick="if(this.checked){myFunction()}">
+  <label >with border</label><br>
+  
+  
+  <label >Border style</label>
+  <select name="bs" id="d" disabled=true;>
+    <option value="solid">solid</option>
+    <option value="dashed ">dashed </option>
+    <option value="dotted">dotted</option>
+  </select>
+  
+   <br>
+    <label>Border color:</label>
+    <input type="color" id="e" value="#ff0000" disabled=true;>
+    <br>
+    <button type="button"  style="font-size:130%;" onclick="f1()">Create the styled paragraph</button>
+
+</form>
+    
+    </td>
+    <td  colspan="2">
+     <p style="font-size:130%;"><b>Searching for a text</b></p>
+     <label>Search for a word:</label>
+    <input type="text" id="f">
+     <button type="button" onclick="f2()" >Search</button>
+      <button type="button"  onclick="f1()">Clean Search</button>
+      <p id="n"> </p>
+     <br><br><br><br><br><br><br><br><br> 
+    </td>
+  </tr>
+  
+  
+  <tr>
+  <td  colspan="2">
+  <p id="demo"></p>
+  </tr>
+  
+</table>
+
+<script>
+function myFunction()
+{
+document.getElementById("d").disabled=false;
+document.getElementById("e").disabled=false;
+
+}
+function myFunction1()
+{
+document.getElementById("d").disabled=true;
+document.getElementById("e").disabled=true;
+
+}
+
+
+
+
+
+
+
+function f1()
+{
+
+var text=document.getElementById("a").value;
+var textColor=document.getElementById("b").value;
+var backgroundColor=document.getElementById("c").value;
+var bordero= document.getElementById("witho").checked;
+var borderw=document.getElementById("with").checked;
+var borderStyle=document.getElementById("d").value;
+var borderColor1=document.getElementById("e").value;
+
+
+innerHTML=text;
+document.getElementById("demo").style.color=textColor;
+document.getElementById("demo").style.background=backgroundColor;
+
+if(bordero==true)
+{
+document.getElementById("demo").style.border="none";
+}
+
+else if (borderw==true)
+{
+
+     if(borderStyle=='solid'){document.getElementById("demo").style.border="solid";}
+     else if(borderStyle=='dotted')
+     {document.getElementById("demo").style.border="dotted";}
+     else 
+     {document.getElementById("demo").style.border="dashed";}  
+     
+     document.getElementById("demo").style.borderColor=borderColor1;
+}
+
+
+
+
+document.getElementById("demo").innerHTML=text;
+
+}
+
+function f2()
+{
+var serch1=document.getElementById("f").value;
+var text=document.getElementById("a").value;
+var x=text.indexOf(serch1);
+
+document.getElementById("n").innerHTML="";
+
+if(x==-1)
+{
+document.getElementById("n").innerHTML="the word does not exist." ;
+}
+else
+{
+var res = text.replace(new RegExp(serch1, "gi"), function (x)
+{
+    return "<mark>"+ x +"</mark>";
+  });
+
+document.getElementById("demo").innerHTML=res;
+}
+}
+
+
+</script>
+
+
+
+</body>
+</html>
